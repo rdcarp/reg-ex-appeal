@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegExAppeal.WebApp", "RegExAppeal.WebApp\RegExAppeal.WebApp.csproj", "{4128F23E-BD1A-4D65-A7CE-D7414BCDB5EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegExAppeal.WebControls", "RegExAppeal.WebControls\RegExAppeal.WebControls.csproj", "{24FFEAA3-31A9-4642-88B7-C4F37411C71E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegExAppeal.Domain", "RegExAppeal.Domain\RegExAppeal.Domain.csproj", "{B710B931-097E-4B04-AED6-7DD4B22227C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4128F23E-BD1A-4D65-A7CE-D7414BCDB5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4128F23E-BD1A-4D65-A7CE-D7414BCDB5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4128F23E-BD1A-4D65-A7CE-D7414BCDB5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4128F23E-BD1A-4D65-A7CE-D7414BCDB5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24FFEAA3-31A9-4642-88B7-C4F37411C71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24FFEAA3-31A9-4642-88B7-C4F37411C71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24FFEAA3-31A9-4642-88B7-C4F37411C71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24FFEAA3-31A9-4642-88B7-C4F37411C71E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B710B931-097E-4B04-AED6-7DD4B22227C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B710B931-097E-4B04-AED6-7DD4B22227C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B710B931-097E-4B04-AED6-7DD4B22227C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B710B931-097E-4B04-AED6-7DD4B22227C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
