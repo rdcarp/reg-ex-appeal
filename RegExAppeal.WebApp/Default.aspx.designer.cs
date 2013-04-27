@@ -13,6 +13,15 @@ namespace RegExAppeal.WebApp {
     public partial class _Default {
         
         /// <summary>
+        /// pnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnl;
+        
+        /// <summary>
         /// gameBoard control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace RegExAppeal.WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::RegExAppeal.WebApp.WebControls.GameBoard gameBoard;
+        
+        /// <summary>
+        /// prediction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::RegExAppeal.WebApp.WebControls.BestPredictionGuesser prediction;
         
         /// <summary>
         /// keyboard control.

@@ -17,7 +17,7 @@ namespace RegExAppeal.WebApp.WebControls
 
 		private List<string> TopRow = new List<string> {"Q", "W", "E", "R", "T,", "Y", "U", "I", "O", "P"};
 		private List<string> MiddleRow = new List<string> {"A", "S", "D", "F", "G,", "H", "J", "K", "L"};
-		private List<string> BottomRow = new List<string> {"Z", "X", "C", "V", "B,", "N", "M"};
+		private List<string> BottomRow = new List<string> {"Z", "X", "C", "V", "B,", "N", "M", Character.SpecialCharacter.ToString(), Character.UnknownCharacter.ToString()};
 
 		protected void Page_Load(object sender, EventArgs e)
 		{

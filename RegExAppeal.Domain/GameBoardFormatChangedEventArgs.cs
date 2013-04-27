@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RegExAppeal.Domain
 {
-	class Answers
+	public class GameBoardFormatChangedEventArgs : EventArgs
 	{
 	}
 }

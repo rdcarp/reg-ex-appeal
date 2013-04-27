@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
-    <Compile Include="Answers.cs" />
+    <Compile Include="AnswerSet.cs" />
     <Compile Include="BoardFormat.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="GameBoardFormatChangedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solver.cs" />
     <Compile Include="Word.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

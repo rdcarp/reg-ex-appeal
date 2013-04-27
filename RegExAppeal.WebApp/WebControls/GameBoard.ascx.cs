@@ -11,6 +11,12 @@ namespace RegExAppeal.WebApp.WebControls
 {
 	public partial class GameBoard : System.Web.UI.UserControl
 	{
+		public delegate void GameBoardButtonClickedEventHandler(object sender, GameBoardButtonClickedEventArgs e);
+
+		public event GameBoardButtonClickedEventHandler GameBoardButtonClicked;
+
+		private int index = 0;
+
 		public BoardFormat Format { get; set; }
 		public Character ActiveCharacter
 		{
@@ -42,7 +48,7 @@ namespace RegExAppeal.WebApp.WebControls
 			{
 				var word = e.Item.DataItem as Word;
 				var rptCharacters = e.Item.FindControl("rptCharacters") as Repeater;
-				
+
 				if (rptCharacters != null)
 				{
 					rptCharacters.ItemDataBound += new RepeaterItemEventHandler(rptCharacters_ItemDataBound);
@@ -62,6 +68,7 @@ namespace RegExAppeal.WebApp.WebControls
 				if (characterButton != null)
 				{
 					characterButton.Text = character.LowerCase.ToString();
+					characterButton.Index = (index)++;
 					characterButton.CommandArgument = character.LowerCase.ToString();
 				}
 			}
@@ -80,6 +87,23 @@ namespace RegExAppeal.WebApp.WebControls
 		private void UpdateLetter(CharacterButton sender, string newValue)
 		{
 			sender.Text = newValue;
+			Format.UpdateCharacter(1, 1, sender.Text[0]);
 		}
+
+		protected virtual void OnKeyboardButtonClicked(GameBoardButtonClickedEventArgs e)
+		{
+			if (GameBoardButtonClicked != null)
+			{
+				GameBoardButtonClicked(this, e);
+			}
+		}
+
+
+	}
+
+	public class GameBoardButtonClickedEventArgs : EventArgs
+	{
+		public int Word { get; set; }
+		public int Character { get; set; }
 	}
 }

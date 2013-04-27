@@ -11,5 +11,9 @@ namespace RegExAppeal.Domain
 		{
 			AddRange(wordLengths.Select(x => new Word(x)));
 		}
+		public void UpdateCharacter(int wordIndex, int characterIndex, char character)
+		{
+			this[wordIndex][characterIndex] = new Character(character);
+		}
 	}
 }

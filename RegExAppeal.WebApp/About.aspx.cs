@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using RegExAppeal.Domain;
 
 namespace RegExAppeal.WebApp
 {
@@ -11,7 +12,14 @@ namespace RegExAppeal.WebApp
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			var path = MapPath("App_Data/ProgrammingLanguages.xml");
 
+			AnswerSet a = AnswerSet.LoadAnswerSet(path);
+
+			foreach (var ans in a.Answer)
+			{
+				Response.Write(ans.Value);
+			}
 		}
 	}
 }

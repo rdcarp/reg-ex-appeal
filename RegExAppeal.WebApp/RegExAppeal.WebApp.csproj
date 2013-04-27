@@ -70,6 +70,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="WebControls\BestPredictionGuesser.ascx" />
     <Content Include="WebControls\GameBoard.ascx" />
     <Content Include="WebControls\Keyboard.ascx" />
   </ItemGroup>
@@ -127,6 +128,13 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="WebControls\BestPredictionGuesser.ascx.cs">
+      <DependentUpon>BestPredictionGuesser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebControls\BestPredictionGuesser.ascx.designer.cs">
+      <DependentUpon>BestPredictionGuesser.ascx</DependentUpon>
+    </Compile>
     <Compile Include="WebControls\GameBoard.ascx.cs">
       <DependentUpon>GameBoard.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -142,7 +150,14 @@
       <DependentUpon>Keyboard.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="AnswerFileFormat.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AnswerSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />

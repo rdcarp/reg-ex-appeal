@@ -13,6 +13,8 @@ namespace RegExAppeal.WebControls
 
 		public event CharacterButtonClickedEventHandler CharacterButtonClicked;
 
+		public int Index { get; set; }
+
 		protected override void OnInit(EventArgs e)
 		{
 			base.OnInit(e);
