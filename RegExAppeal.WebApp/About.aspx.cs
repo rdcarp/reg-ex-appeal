@@ -16,9 +16,9 @@ namespace RegExAppeal.WebApp
 
 			AnswerSet a = AnswerSet.LoadAnswerSet(path);
 
-			foreach (var ans in a.Answer)
+			foreach (var ans in a.Answers)
 			{
-				Response.Write(ans.Value);
+				Response.Write(ans.OriginalAnswer + " " + ans.EncodedAnswer);
 			}
 		}
 	}

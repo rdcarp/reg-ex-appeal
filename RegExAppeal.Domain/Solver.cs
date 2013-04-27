@@ -27,8 +27,10 @@ namespace RegExAppeal.Domain
 
 		public void UpdateFormat(int index, char c)
 		{
-			//_format.UpdateCharacter();
+			_format.UpdateCharacter(index, c);
 		}
+
+		// get some unit tests for this first
 
 	protected virtual void OnKeyboardButtonClicked(GameBoardFormatChangedEventArgs e)
 		{

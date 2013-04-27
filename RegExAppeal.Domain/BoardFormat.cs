@@ -15,5 +15,26 @@ namespace RegExAppeal.Domain
 		{
 			this[wordIndex][characterIndex] = new Character(character);
 		}
+		public void UpdateCharacter(int letterIndex, char character)
+		{
+			var wordIndex = 0;
+			var characterIndex = 0;
+
+			while (letterIndex > 0)
+			{
+				if (this[wordIndex].Count < letterIndex)
+				{
+					wordIndex++;
+					letterIndex = -this[wordIndex].Count;
+				}
+				else
+				{
+					characterIndex = letterIndex;
+					letterIndex = - letterIndex;
+				}
+			}
+
+			this[wordIndex][characterIndex] = new Character(character);
+		}
 	}
 }
