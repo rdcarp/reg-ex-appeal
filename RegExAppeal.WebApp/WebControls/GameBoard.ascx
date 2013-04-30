@@ -8,7 +8,7 @@
 			<li>
 				<asp:Repeater runat="server" ID="rptCharacters">
 					<ItemTemplate>
-							<ps:CharacterButton runat="server" ID="character" CommandName="UpdateLetter" OnCommand="characterButton_Command" />
+							<ps:CharacterButton runat="server" ID="character" CommandName="UpdateLetter" OnCommand="characterButton_Command" OnClick="characterButton_CharacterButtonClicked" />
 					</ItemTemplate>
 				</asp:Repeater>
 			</li>

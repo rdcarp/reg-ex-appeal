@@ -8,6 +8,6 @@
         About
     </h2>
     <p>
-        Put content here.
+	    <asp:Literal runat="server" ID="lit" />
     </p>
 </asp:Content>

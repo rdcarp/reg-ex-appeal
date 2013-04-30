@@ -11,11 +11,24 @@ namespace RegExAppeal.WebApp
 {
 	public partial class _Default : System.Web.UI.Page
 	{
+		private Solver solver;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			gameBoard.Format = new BoardFormat(3, 4, 5, 6);
+			var path = MapPath("App_Data/ProgrammingLanguages.xml");
+			solver = new Solver(path, 4, 6, 5);
+
+			gameBoard.Format = solver.Format;
 			gameBoard.DataBind();
-			keyboard.KeyboardButtonClicked += new WebControls.Keyboard.KeyboardButtonClickedEventHandler(keyboard_KeyboardButtonClicked);	
+
+			keyboard.KeyboardButtonClicked += new WebControls.Keyboard.KeyboardButtonClickedEventHandler(keyboard_KeyboardButtonClicked);
+			gameBoard.GameBoardButtonClicked += new WebControls.GameBoard.GameBoardButtonClickedEventHandler(gameBoard_GameBoardButtonClicked);
+		}
+
+		void gameBoard_GameBoardButtonClicked(object sender, WebControls.GameBoardButtonClickedEventArgs e)
+		{
+			solver.UpdateFormat(e.Word, e.Character, gameBoard.ActiveCharacter.LowerCase);
+			prediction.Solver = solver;
+			prediction.DataBind();
 		}
 
 		void keyboard_KeyboardButtonClicked(object sender, WebControls.KeyboardButtonClickedEventArgs e)

@@ -15,7 +15,7 @@ namespace RegExAppeal.WebApp.WebControls
 
 		public event GameBoardButtonClickedEventHandler GameBoardButtonClicked;
 
-		private int index = 0;
+		private int wordIndex = 0;
 
 		public BoardFormat Format { get; set; }
 		public Character ActiveCharacter
@@ -55,6 +55,8 @@ namespace RegExAppeal.WebApp.WebControls
 					rptCharacters.DataSource = word;
 					rptCharacters.DataBind();
 				}
+
+				wordIndex++;
 			}
 		}
 
@@ -68,10 +70,27 @@ namespace RegExAppeal.WebApp.WebControls
 				if (characterButton != null)
 				{
 					characterButton.Text = character.LowerCase.ToString();
-					characterButton.Index = (index)++;
+					characterButton.WordIndex = wordIndex;
+					characterButton.CharacterIndex = e.Item.ItemIndex;
 					characterButton.CommandArgument = character.LowerCase.ToString();
+					characterButton.CharacterButtonClicked += new CharacterButton.CharacterButtonClickedEventHandler(characterButton_CharacterButtonClicked);
 				}
 			}
+		}
+
+		protected void characterButton_CharacterButtonClicked(object sender, EventArgs e)
+		{
+			var button = sender as CharacterButton;
+			if (button == null)
+				return;
+			
+			var newArgs = new GameBoardButtonClickedEventArgs
+				{
+					Word = button.WordIndex, 
+					Character = button.CharacterIndex
+				};
+
+			OnKeyboardButtonClicked(newArgs);
 		}
 
 		public void characterButton_Command(object sender, CommandEventArgs e)
@@ -79,7 +98,7 @@ namespace RegExAppeal.WebApp.WebControls
 			switch (e.CommandName)
 			{
 				case "UpdateLetter":
-					UpdateLetter(sender as CharacterButton, ActiveCharacter.LowerCase.ToString());
+					UpdateLetter(sender as CharacterButton, ActiveCharacter.LowerCase.ToString());			
 					break;
 			}
 		}
@@ -97,8 +116,6 @@ namespace RegExAppeal.WebApp.WebControls
 				GameBoardButtonClicked(this, e);
 			}
 		}
-
-
 	}
 
 	public class GameBoardButtonClickedEventArgs : EventArgs

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using RegExAppeal.Domain;
+using RegExAppeal.WebApp.WebControls;
 
 namespace RegExAppeal.WebApp
 {
@@ -14,12 +15,45 @@ namespace RegExAppeal.WebApp
 		{
 			var path = MapPath("App_Data/ProgrammingLanguages.xml");
 
-			AnswerSet a = AnswerSet.LoadAnswerSet(path);
+			//todo create overloads that take BoardFormats and AnswerSets
+			var solver = new Solver(path, 4, 6, 5);
 
+			AnswerSet a = AnswerSet.LoadAnswerSet(path);
 			foreach (var ans in a.Answers)
 			{
-				Response.Write(ans.OriginalAnswer + " " + ans.EncodedAnswer);
+				lit.Text +=(ans.OriginalAnswer + " " + ans.EncodedAnswer);
+				lit.Text += "<br />";
 			}
+
+			AddBr();
+			AddBr();
+			lit.Text += "Posbbile answers for this board";
+			var bf = new BoardFormat(4, 6, 5);
+
+			foreach (var possibleAnswer in solver.PossibleAnswers)
+			{
+				AddBr();
+				lit.Text += possibleAnswer.OriginalAnswer;
+			}
+
+			AddBr();
+			AddBr();
+
+			solver.UpdateFormat(1, 0, 'a');
+			solver.UpdateFormat(2, 3, 'E');
+
+			solver.UpdatePossibleAnswers();
+
+			foreach (var possibleAnswer in solver.PossibleAnswers)
+			{
+				AddBr();
+				lit.Text += possibleAnswer.OriginalAnswer;
+			}
+		}
+
+		private void AddBr()
+		{
+			lit.Text += "<br />";
 		}
 	}
 }

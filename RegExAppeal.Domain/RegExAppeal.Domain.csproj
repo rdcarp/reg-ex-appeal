@@ -45,6 +45,7 @@
     <Compile Include="BoardFormat.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="GameBoardFormatChangedEventArgs.cs" />
+    <Compile Include="ISolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solver.cs" />
     <Compile Include="Word.cs" />

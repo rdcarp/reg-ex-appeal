@@ -9,7 +9,6 @@ namespace RegExAppeal.Domain
 	public class Answer
 	{
 		private string _originalAnswer;
-
 		public string OriginalAnswer
 		{
 			get { return _originalAnswer; }
@@ -27,6 +26,19 @@ namespace RegExAppeal.Domain
 			}
 		}
 
+		private List<char> _distinctCharacters;
+		public List<char> DistintCharacters
+		{
+			get
+			{
+				if (_distinctCharacters == null)
+				{
+					_distinctCharacters = _encodedAnswer.Replace(" ", "").Replace(Character.SpecialCharacter.ToString(), " ").Distinct().ToList();
+				}
+				return _distinctCharacters;
+			}
+		}
+
 		public Answer(string answer)
 		{
 			_originalAnswer = answer;
@@ -37,11 +49,14 @@ namespace RegExAppeal.Domain
 			var temp = string.Empty;
 
 			for (int i = 0; i < originalAnswer.Length; i++)
-				if (originalAnswer.ToLower()[i] < 'a' || originalAnswer.ToLower()[i] > 'z')
+			{
+				if (originalAnswer.ToLower()[i].Equals(' '))
+					temp += " ";
+				else if (originalAnswer.ToLower()[i] < 'a' || originalAnswer.ToLower()[i] > 'z')
 					temp += Character.SpecialCharacter;
 				else
 					temp += originalAnswer.ToLower()[i];
-
+			}
 			return temp;
 		}
 
