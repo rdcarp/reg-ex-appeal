@@ -17,7 +17,11 @@ namespace RegExAppeal.WebApp.WebControls
 
 		private int wordIndex = 0;
 
-		public BoardFormat Format { get; set; }
+		public BoardFormat Format
+		{
+			get { return ViewState["Format"] as BoardFormat; }
+			set { ViewState["Format"] = value; }
+		}
 		public Character ActiveCharacter
 		{
 			get { return ViewState["ActiveCharacter"] as Character; }

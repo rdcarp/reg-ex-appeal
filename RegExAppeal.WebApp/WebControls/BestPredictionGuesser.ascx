@@ -1,4 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BestPredictionGuesser.ascx.cs" Inherits="RegExAppeal.WebApp.WebControls.BestPredictionGuesser" %>
+<%@ Import Namespace="RegExAppeal.Domain" %>
+
+Possible Answers
+<asp:Repeater runat="server" ID="rptAnswers">
+	<ItemTemplate>
+		<%# ((Answer)Container.DataItem).OriginalAnswer %>
+	</ItemTemplate>
+</asp:Repeater>
 
 <%= SuggestionsToList %> most likely letters
 <asp:Repeater runat="server" ID="rptLetters">
@@ -14,3 +22,4 @@
 		</ol>
 	</FooterTemplate>
 </asp:Repeater>
+

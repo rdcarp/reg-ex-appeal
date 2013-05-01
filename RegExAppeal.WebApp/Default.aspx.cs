@@ -12,6 +12,14 @@ namespace RegExAppeal.WebApp
 	public partial class _Default : System.Web.UI.Page
 	{
 		private Solver solver;
+		protected override void OnInit(EventArgs e)
+		{
+			base.OnInit(e);
+
+			keyboard.KeyboardButtonClicked += new WebControls.Keyboard.KeyboardButtonClickedEventHandler(keyboard_KeyboardButtonClicked);
+			gameBoard.GameBoardButtonClicked += new WebControls.GameBoard.GameBoardButtonClickedEventHandler(gameBoard_GameBoardButtonClicked);
+
+		}
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			var path = MapPath("App_Data/ProgrammingLanguages.xml");
@@ -20,13 +28,13 @@ namespace RegExAppeal.WebApp
 			gameBoard.Format = solver.Format;
 			gameBoard.DataBind();
 
-			keyboard.KeyboardButtonClicked += new WebControls.Keyboard.KeyboardButtonClickedEventHandler(keyboard_KeyboardButtonClicked);
-			gameBoard.GameBoardButtonClicked += new WebControls.GameBoard.GameBoardButtonClickedEventHandler(gameBoard_GameBoardButtonClicked);
+			prediction.Solver = solver;
+			prediction.DataBind();
 		}
 
 		void gameBoard_GameBoardButtonClicked(object sender, WebControls.GameBoardButtonClickedEventArgs e)
 		{
-			solver.UpdateFormat(e.Word, e.Character, gameBoard.ActiveCharacter.LowerCase);
+			solver.UpdateFormat(e.Word, e.Character, gameBoard.ActiveCharacter.LowerCase, true);
 			prediction.Solver = solver;
 			prediction.DataBind();
 		}

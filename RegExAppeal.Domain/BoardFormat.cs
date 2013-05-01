@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RegExAppeal.Domain
 {
+	[Serializable]
 	public class BoardFormat : List<Word>
 	{
 		public BoardFormat(params int[] wordLengths)

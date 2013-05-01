@@ -21,14 +21,17 @@ namespace RegExAppeal.WebApp.WebControls
 
 		void rptLetters_ItemDataBound(object sender, RepeaterItemEventArgs e)
 		{
-			var item = e.Item.DataItem as string;
-
-			if (item != null)
+			if (e.Item.DataItem != null)
 			{
-				var lit = e.Item.FindControl("lit") as Literal;
-				if (lit != null)
+				char c;
+
+				if (char.TryParse(e.Item.DataItem.ToString(), out c))
 				{
-					lit.Text = item;
+					var lit = e.Item.FindControl("lit") as Literal;
+					if (lit != null)
+					{
+						lit.Text = c.ToString();
+					}
 				}
 			}
 		}
@@ -41,6 +44,9 @@ namespace RegExAppeal.WebApp.WebControls
 
 			rptLetters.DataSource = Solver.MostCommonLetterRemaining();
 			rptLetters.DataBind();
+
+			rptAnswers.DataSource = Solver.PossibleAnswers;
+			rptAnswers.DataBind();
 		}
 	}
 }

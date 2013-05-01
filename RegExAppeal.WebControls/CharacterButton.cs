@@ -9,12 +9,24 @@ namespace RegExAppeal.WebControls
 {
 	public class CharacterButton : Button
 	{
+		private const string WordIndexViewStateKey = "wordindex";
+		private const string CharacterIndexViewStateKey = "characterindex";
+
 		public delegate void CharacterButtonClickedEventHandler(CharacterButton sender, EventArgs e);
 
 		public event CharacterButtonClickedEventHandler CharacterButtonClicked;
 
-		public int WordIndex { get; set; }
-		public int CharacterIndex { get; set; }
+		public int WordIndex
+		{
+			get { return ViewState[WordIndexViewStateKey] != null ? (int)ViewState[WordIndexViewStateKey] : 0; }
+			set { ViewState[WordIndexViewStateKey] = value; }
+		}
+
+		public int CharacterIndex
+		{
+			get { return ViewState[CharacterIndexViewStateKey] != null ? (int) ViewState[CharacterIndexViewStateKey] : 0; }
+			set { ViewState[CharacterIndexViewStateKey] = value; }
+		}
 
 		protected override void OnInit(EventArgs e)
 		{

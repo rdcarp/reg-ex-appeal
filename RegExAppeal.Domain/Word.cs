@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RegExAppeal.Domain
 {
+	[Serializable]
 	public class Word : List<Character>
 	{
 		public Word(params char[] characters)

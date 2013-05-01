@@ -13,6 +13,15 @@ namespace RegExAppeal.WebApp.WebControls {
     public partial class BestPredictionGuesser {
         
         /// <summary>
+        /// rptAnswers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptAnswers;
+        
+        /// <summary>
         /// rptLetters control.
         /// </summary>
         /// <remarks>
