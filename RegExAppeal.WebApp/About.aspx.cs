@@ -16,12 +16,12 @@ namespace RegExAppeal.WebApp
 			var path = MapPath("App_Data/ProgrammingLanguages.xml");
 
 			//todo create overloads that take BoardFormats and AnswerSets
-			var solver = new Solver(path, 4, 6, 5);
+			var solver = new Solver(new AnswerSet(path), 4, 6, 5);
 
 			AnswerSet a = AnswerSet.LoadAnswerSet(path);
 			foreach (var ans in a.Answers)
 			{
-				lit.Text +=(ans.OriginalAnswer + " " + ans.EncodedAnswer);
+				lit.Text +=(ans.Value + " " + ans.EncodedValue);
 				lit.Text += "<br />";
 			}
 
@@ -33,7 +33,7 @@ namespace RegExAppeal.WebApp
 			foreach (var possibleAnswer in solver.PossibleAnswers)
 			{
 				AddBr();
-				lit.Text += possibleAnswer.OriginalAnswer;
+				lit.Text += possibleAnswer.Value;
 			}
 
 			AddBr();
@@ -47,7 +47,7 @@ namespace RegExAppeal.WebApp
 			foreach (var possibleAnswer in solver.PossibleAnswers)
 			{
 				AddBr();
-				lit.Text += possibleAnswer.OriginalAnswer;
+				lit.Text += possibleAnswer.Value;
 			}
 		}
 

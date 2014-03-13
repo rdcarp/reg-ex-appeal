@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using RegExAppeal.Domain;
@@ -11,7 +13,7 @@ namespace RegExAppeal.WebApp
 {
 	public partial class _Default : System.Web.UI.Page
 	{
-		private Solver solver;
+	    private Solver solver;
 		protected override void OnInit(EventArgs e)
 		{
 			base.OnInit(e);
@@ -22,14 +24,23 @@ namespace RegExAppeal.WebApp
 		}
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			var path = MapPath("App_Data/ProgrammingLanguages.xml");
-			solver = new Solver(path, 4, 6, 5);
+		    if (!IsPostBack)
+		    {
+		        var path = MapPath("App_Data/ProgrammingLanguages.json");
 
-			gameBoard.Format = solver.Format;
-			gameBoard.DataBind();
+		        var answerSet = new AnswerSet(path);
+		        Random r = new Random();
 
-			prediction.Solver = solver;
-			prediction.DataBind();
+		        var correctAnswer = answerSet.Answers.ToArray()[r.Next(0, answerSet.Answers.Count() - 1)];
+
+		        solver = new Solver(answerSet, correctAnswer.Format);
+
+		        gameBoard.Format = solver.Format;
+		        gameBoard.DataBind();
+
+		        prediction.Solver = solver;
+		        prediction.DataBind();
+		    }
 		}
 
 		void gameBoard_GameBoardButtonClicked(object sender, WebControls.GameBoardButtonClickedEventArgs e)

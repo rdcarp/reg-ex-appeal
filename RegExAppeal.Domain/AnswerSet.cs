@@ -1,60 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 
 namespace RegExAppeal.Domain
 {
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.1")]
-	[SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[XmlTypeAttribute(AnonymousType = true)]
-	[XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public class AnswerSet
 	{
-		private string[] answerField;
+        public ICollection<Answer> Answers { get; set; }
+        public string Name { get; set; }
 
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute("Answer")]
-		public string[] Answer
-		{
-			get
-			{
-				return this.answerField;
-			}
-			set
-			{
-				this.answerField = value;
-			}
-		}
+        public AnswerSet()
+        {
+            this.Answers = new Collection<Answer>();
+        }
+        public AnswerSet(Collection<string> answers)
+            : this()
+        {
+            this.Answers = answers.Select(x => new Answer(x)).ToList();
+        }
+        public AnswerSet(string file)
+            : this(new AnswerFile(file))
+        {
+        }
+        public AnswerSet(AnswerFile file)
+        {
+            this.Answers = file.Answers.Select(x => new Answer(x)).ToList();
+            this.Name = file.Name;
+        }
 
-		private IEnumerable<Answer> _answers;
-		public IEnumerable<Answer> Answers
-		{
-			get
-			{
-				if (_answers == null && Answer != null)
-					_answers = Answer.Select(x => new Answer(x));
+	    public static AnswerSet LoadAnswerSet(string fileName)
+	    {
+	        var reader = new StreamReader(fileName);
+	        var serializer = new JavaScriptSerializer();
+	        
+            var answerFile = serializer.Deserialize<AnswerFile>(reader.ReadToEnd());
 
-				return _answers;
-			}
-		}
-
-		public AnswerSet()
-		{}
-		public static AnswerSet LoadAnswerSet(string fileName)
-		{
-			XmlSerializer serializer = new XmlSerializer(typeof(AnswerSet));
-
-			StreamReader reader = new StreamReader(fileName);
-			var answers = (AnswerSet)serializer.Deserialize(reader);
-			
-			reader.Close();
-
-			return answers;
-		}
+            return new AnswerSet(answerFile);
+	    }
 
 
 	}

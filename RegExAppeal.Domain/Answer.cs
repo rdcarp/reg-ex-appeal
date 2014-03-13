@@ -8,25 +8,27 @@ namespace RegExAppeal.Domain
 {
 	public class Answer
 	{
-		private string _originalAnswer;
-		public string OriginalAnswer
+        private string _value;
+        private string _encodedAnswer;
+        private List<char> _distinctCharacters;
+	    private int[] _format;
+
+		public string Value
 		{
-			get { return _originalAnswer; }
+			get { return _value; }
 		}
 
-		private string _encodedAnswer;
-		public string EncodedAnswer
+		public string EncodedValue
 		{
 			get
 			{
-				if (string.IsNullOrWhiteSpace(_encodedAnswer) && !string.IsNullOrWhiteSpace(_originalAnswer))
-					_encodedAnswer = EncodeAnswer(_originalAnswer);
+				if (string.IsNullOrWhiteSpace(_encodedAnswer) && !string.IsNullOrWhiteSpace(_value))
+					_encodedAnswer = EncodeAnswer(_value);
 
 				return _encodedAnswer;
 			}
 		}
 
-		private List<char> _distinctCharacters;
 		public List<char> DistintCharacters
 		{
 			get
@@ -41,7 +43,7 @@ namespace RegExAppeal.Domain
 
 		public Answer(string answer)
 		{
-			_originalAnswer = answer;
+			_value = answer;
 		}
 
 		public static string EncodeAnswer(string originalAnswer)
@@ -60,5 +62,21 @@ namespace RegExAppeal.Domain
 			return temp;
 		}
 
+        public int[] Format
+        {
+            get
+            {
+                if (_format == null)
+                {
+                    this._format = this.EncodedValue.Split(' ').Select(x => x.Length).ToArray();
+                }
+                return _format;
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.Value;
+        }
 	}
 }

@@ -4,7 +4,7 @@
 Possible Answers
 <asp:Repeater runat="server" ID="rptAnswers">
 	<ItemTemplate>
-		<%# ((Answer)Container.DataItem).OriginalAnswer %>
+		<%# ((Answer)Container.DataItem).Value %>
 	</ItemTemplate>
 </asp:Repeater>
 

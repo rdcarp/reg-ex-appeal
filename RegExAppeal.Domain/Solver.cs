@@ -14,7 +14,7 @@ namespace RegExAppeal.Domain
 
 		//todo viewstate this badboy!
 		private BoardFormat _format;
-		private AnswerSet _answers;
+		private AnswerSet _answerSet;
 		private List<Answer> _possibleAnswers;
 		private List<char> _wrongLetters = new List<char>();
 		private List<char> PlayedLetters
@@ -47,15 +47,15 @@ namespace RegExAppeal.Domain
 		}
 		public BoardFormat Format { get { return _format; } }
 
-		public Solver(string fileName, params int[] wordLengths)
-			: this(fileName, new BoardFormat(wordLengths))
+		public Solver(AnswerSet answerSet, params int[] wordLengths)
+			: this(answerSet, new BoardFormat(wordLengths))
 		{
 		}
 
-		public Solver(string fileName, BoardFormat format)
+		public Solver(AnswerSet answerSet, BoardFormat format)
 		{
-			_answers = AnswerSet.LoadAnswerSet(fileName);
-			_format = format;
+		    this._answerSet = answerSet;
+			this._format = format;
 
 			UpdatePossibleAnswers();
 		}
@@ -102,9 +102,9 @@ namespace RegExAppeal.Domain
 
 			Regex r = new Regex(sb.ToString().Trim(), RegexOptions.IgnoreCase);
 
-			foreach (var answer in _answers.Answers)
+			foreach (var answer in _answerSet.Answers)
 			{
-				if (r.IsMatch(answer.EncodedAnswer))
+				if (r.IsMatch(answer.EncodedValue))
 					possibleAnswers.Add(answer);
 			}
 
